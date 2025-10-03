@@ -1,0 +1,24 @@
+{
+	"name": "anki-sync",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"bin": {
+		"anki-sync": "./dist/sync-anki-cli.js"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc && cp src/card.css dist/card.css",
+		"pkg": "pkg dist/sync-anki-cli.js --targets node22-macos,node22-win,node22-linux"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@types/node": "^24.6.2",
+		"axios": "^1.12.2",
+		"p-limit": "^7.1.1",
+		"typescript": "^5.9.3"
+	}
+}

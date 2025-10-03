@@ -1,0 +1,4 @@
+{
+	"main": "dist/sync-anki-cli.js",
+	"output": "sync-anki-cli"
+}
