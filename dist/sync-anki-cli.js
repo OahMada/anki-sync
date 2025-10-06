@@ -2,9 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import pLimit from 'p-limit';
-import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = process.cwd();
 // import your helpers
 import { getBlobNameFromUrl, invokeAnkiConnect, createIPAFieldValue } from './helpers.js';
 // CLI entry
