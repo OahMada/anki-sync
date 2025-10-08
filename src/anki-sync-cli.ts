@@ -6,6 +6,140 @@ import pLimit from 'p-limit';
 
 const __dirname = process.cwd();
 
+var css = `
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+body {
+	line-height: 1.5;
+	-webkit-font-smoothing: antialiased;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+p {
+	text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+.card {
+	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
+	padding: 30px 20px;
+	margin: 0;
+	text-align: start;
+}
+
+.replay-button svg {
+	width: 30px;
+	height: 30px;
+}
+
+.sentence {
+	font-weight: 500;
+	margin-bottom: 10px;
+}
+
+.ipa {
+	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 0;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.ipa li {
+	border: 1px solid black;
+	border-radius: 10px;
+	padding: 5px;
+	font-size: 14px;
+}
+
+body.nightMode .ipa li {
+	border: 1px solid lightgrey;
+}
+
+.ipa:empty {
+	display: none;
+}
+
+.audio {
+	position: fixed;
+	left: 20px;
+	bottom: 20px;
+	filter: drop-shadow(0px 4px 4px hsla(0, 0%, 0%, 0.3));
+}
+
+.translation {
+	margin-bottom: 10px;
+}
+
+.note {
+	white-space: pre-wrap;
+	background-color: lightgrey;
+	border-radius: 10px;
+	padding: 8px;
+}
+
+body.nightMode .note {
+	background-color: hsl(0, 0%, 12%);
+}
+
+.note:empty {
+	display: none;
+}
+
+.input {
+	margin-bottom: 10px;
+}
+`;
+
 // import your helpers
 import { getBlobNameFromUrl, invokeAnkiConnect, createIPAFieldValue } from './helpers.js';
 
@@ -82,7 +216,7 @@ async function main() {
 			await invokeAnkiConnect('createModel', {
 				modelName,
 				inOrderFields: ['Sentence', 'Audio', 'IPA', 'Translation', 'Note', 'dbID'],
-				css: fs.readFileSync(path.join(__dirname, 'card.css'), 'utf-8'), // optional external CSS
+				css,
 				isCloze: false,
 				cardTemplates: [
 					{
@@ -102,11 +236,6 @@ async function main() {
 					},
 				],
 			});
-
-			let fontPath = path.join(process.cwd(), 'public', 'fonts', 'Roboto.woff2');
-			if (fs.existsSync(fontPath)) {
-				await invokeAnkiConnect('storeMediaFile', { filename: '_Roboto.woff2', path: fontPath });
-			}
 		}
 	} catch (err) {
 		console.error('Failed to setup deck:', err);
