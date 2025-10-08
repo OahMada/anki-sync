@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"type": "module",
-	"bin": "./dist/sync-anki-cli.js",
+	"bin": "./dist/anki-sync-cli.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "tsc && cp src/card.css dist/card.css",
