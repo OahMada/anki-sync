@@ -48,6 +48,7 @@ interface UserData {
 
 // CLI entry
 async function main() {
+	console.log('Start syncing...');
 	let args = process.argv.slice(2);
 	if (!args[0]) {
 		console.error('Usage: node sync-anki-cli.js <path-to-json>');

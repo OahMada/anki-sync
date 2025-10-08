@@ -7,6 +7,7 @@ const __dirname = process.cwd();
 import { getBlobNameFromUrl, invokeAnkiConnect, createIPAFieldValue } from './helpers.js';
 // CLI entry
 async function main() {
+    console.log('Start syncing...');
     let args = process.argv.slice(2);
     if (!args[0]) {
         console.error('Usage: node sync-anki-cli.js <path-to-json>');
@@ -165,4 +166,4 @@ main().catch((err) => {
     console.error('Unexpected error:', err);
     process.exit(1);
 });
-//# sourceMappingURL=sync-anki-cli.js.map
+//# sourceMappingURL=anki-sync-cli.js.map
